@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public class View extends JPanel {
 
+    private float interpolation;
     private Player player;
 
     public View (int WIDTH, int HEIGHT){
@@ -25,9 +26,15 @@ public class View extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
+        int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
+
         //draw the player
-        g.drawRect((int)player.getX(),(int) player.getY(), 10, 10);
+        g.drawRect(drawX,drawY, 10, 10);
+    }
 
-
+    public void setInterpolation(float interp)
+    {
+        interpolation = interp;
     }
 }
