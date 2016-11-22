@@ -21,13 +21,15 @@ public class Player {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void updateX(int u) {
+        if (!(x+u<0)){
+            this.x = x+u*3;
+        }
     }
 
     public void updateY(int u) {
         if (!(y+u<0)){
-            this.y = y+u;
+            this.y = y+u*3;
         }
     }
 }

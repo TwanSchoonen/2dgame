@@ -22,10 +22,10 @@ public class Controller implements KeyListener {
            player.updateY(-1);
         }
         if (x == KeyEvent.VK_LEFT){
-            player.setX(player.getX()-1);
+            player.updateX(-1);
         }
         if (x == KeyEvent.VK_RIGHT){
-            player.setX(player.getX()+1);
+            player.updateX(+1);
         }
         if (x == KeyEvent.VK_DOWN){
             player.updateY(+1);
