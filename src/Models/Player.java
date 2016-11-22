@@ -80,4 +80,11 @@ public class Player {
     public double getLastY() {
         return lastY;
     }
+
+    public void resetPlayer() {
+        x = 0;
+        y = 0;
+        lastX = 0;
+        lastY = 0;
+    }
 }
