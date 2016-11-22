@@ -24,6 +24,10 @@ public class Player {
     private double lastY;
 
     public Player() {
+        initPlayer();
+    }
+
+    private void initPlayer(){
         x = 0;
         y = 0;
         lastX = 0;
@@ -82,9 +86,6 @@ public class Player {
     }
 
     public void resetPlayer() {
-        x = 0;
-        y = 0;
-        lastX = 0;
-        lastY = 0;
+        initPlayer();
     }
 }
