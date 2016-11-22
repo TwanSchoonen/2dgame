@@ -4,32 +4,61 @@ package Models;
  * Created by twan on 22-11-2016.
  */
 public class Player {
+    
+    private final double MOVEMENTINCREASE = 0.00001;
+
+    //Boolean used for movement
+    private boolean moveDown;
+    private boolean moveUp;
+    private boolean moveLeft;
+    private boolean moveRight;
+
+
     //coordinates of the player
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
     public Player() {
         x = 0;
         y = 0;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void updateX(int u) {
-        if (!(x+u<0)){
-            this.x = x+u*3;
+    public void updateMovement(){
+        if(moveDown){
+            this.y+=MOVEMENTINCREASE;
+        }
+        if(moveUp){
+            this.y-=MOVEMENTINCREASE;
+        }
+        if(moveLeft){
+            this.x-=MOVEMENTINCREASE;
+        }
+        if(moveRight){
+            this.x+=MOVEMENTINCREASE;
         }
     }
 
-    public void updateY(int u) {
-        if (!(y+u<0)){
-            this.y = y+u*3;
-        }
+    public void setMoveDown(boolean moveDown) {
+        this.moveDown = moveDown;
+    }
+
+    public void setMoveUp(boolean moveUp) {
+        this.moveUp = moveUp;
+    }
+
+    public void setMoveLeft(boolean moveLeft) {
+        this.moveLeft = moveLeft;
+    }
+
+    public void setMoveRight(boolean moveRight) {
+        this.moveRight = moveRight;
     }
 }

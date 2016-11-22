@@ -18,9 +18,9 @@ public class GameFrame extends JFrame{
     private Player player;
 
     //width of the game Frame
-    private static final int WIDTH = 300;
+    private static final int WIDTH = 700;
     //height of the game Frame
-    private  static final int HEIGHT = 300;
+    private  static final int HEIGHT = 500;
 
     public GameFrame() {
         super("Title test!!"); //set the title of the frame
@@ -35,7 +35,7 @@ public class GameFrame extends JFrame{
         this.addKeyListener(controller);
         controller.linkPlayer(player);
 
-        new Thread(new GameThread(view)).start();
+        new Thread(new GameThread(view, player)).start();
 
         setSize(WIDTH+32,HEIGHT+32);
         setVisible(true); // makes the frame visible

@@ -26,7 +26,7 @@ public class View extends JPanel {
         super.paintComponent(g);
 
         //draw the player
-        g.drawRect(player.getX(),player.getY(), 10, 10);
+        g.drawRect((int)player.getX(),(int) player.getY(), 10, 10);
 
 
     }

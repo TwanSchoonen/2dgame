@@ -19,16 +19,16 @@ public class Controller implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int x = e.getKeyCode();
         if (x == KeyEvent.VK_UP){
-           player.updateY(-1);
+           player.setMoveUp(true);
         }
         if (x == KeyEvent.VK_LEFT){
-            player.updateX(-1);
+            player.setMoveLeft(true);
         }
         if (x == KeyEvent.VK_RIGHT){
-            player.updateX(+1);
+            player.setMoveRight(true);
         }
         if (x == KeyEvent.VK_DOWN){
-            player.updateY(+1);
+            player.setMoveDown(true);
         }
     }
 
@@ -37,6 +37,18 @@ public class Controller implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
-
+        int x = e.getKeyCode();
+        if (x == KeyEvent.VK_UP){
+            player.setMoveUp(false);
+        }
+        if (x == KeyEvent.VK_LEFT){
+            player.setMoveLeft(false);
+        }
+        if (x == KeyEvent.VK_RIGHT){
+            player.setMoveRight(false);
+        }
+        if (x == KeyEvent.VK_DOWN){
+            player.setMoveDown(false);
+        }
     }
 }
