@@ -6,6 +6,6 @@ package MainClasses;
 public class Main {
 
     public static void main(String [] args) {
-        new TwoDGame();
+        new GameFrame();
     }
 }
