@@ -26,10 +26,11 @@ public class View extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+
+
+        //draw player
         int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
         int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
-
-        //draw the player
         g.drawRect(drawX,drawY, 10, 10);
     }
 

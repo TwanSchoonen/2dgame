@@ -17,8 +17,6 @@ public class Player {
     private boolean moveLeft;
     private boolean moveRight;
 
-
-
     //coordinates of the player
     private double x;
     private double lastX;
