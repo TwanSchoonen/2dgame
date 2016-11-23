@@ -8,6 +8,8 @@ public class Player {
     private final double MOVEMENTINCREASE = 3;
     public final int CHARWIDTH = 10;
     public final int CHARHEIGHT = 10;
+    public static int GAMEWIDTH;
+    public static int GAMEHEIGHT;
 
     //Boolean used for movement
     private boolean moveDown;
@@ -25,14 +27,16 @@ public class Player {
 
 
     public Player(int GAMEWIDTH, int GAMEHEIGHT) {
+        this.GAMEWIDTH = GAMEWIDTH;
+        this.GAMEHEIGHT = GAMEHEIGHT;
         initPlayer();
     }
 
     private void initPlayer(){
-        x = 0;
-        y = 0;
-        lastX = 0;
-        lastY = 0;
+        x = GAMEWIDTH/2;
+        y = GAMEHEIGHT/2;
+        lastX = GAMEWIDTH/2;
+        lastY = GAMEHEIGHT/2;
     }
 
     public double getX() {
