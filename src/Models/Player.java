@@ -23,7 +23,11 @@ public class Player {
     private double y;
     private double lastY;
 
-    public Player() {
+    public Player(int GAMEWIDTH, int GAMEHEIGHT) {
+        initPlayer();
+    }
+
+    private void initPlayer(){
         x = 0;
         y = 0;
         lastX = 0;
@@ -82,9 +86,6 @@ public class Player {
     }
 
     public void resetPlayer() {
-        x = 0;
-        y = 0;
-        lastX = 0;
-        lastY = 0;
+       initPlayer();
     }
 }
