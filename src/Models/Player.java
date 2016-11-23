@@ -23,6 +23,7 @@ public class Player {
     private double y;
     private double lastY;
 
+
     public Player(int GAMEWIDTH, int GAMEHEIGHT) {
         initPlayer();
     }
