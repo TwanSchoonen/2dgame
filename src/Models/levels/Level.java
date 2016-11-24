@@ -1,5 +1,6 @@
 package Models.levels;
 
+import MainClasses.GameFrame;
 import Models.Objects.MapObject;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ public abstract class Level {
     public abstract boolean CheckBoundaries();
 
     public abstract Level getNextLevel();
+
 
     public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;

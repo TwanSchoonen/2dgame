@@ -39,8 +39,8 @@ public class View extends JPanel {
         //draw current level
         try {
             //draw background
-            Image image = ImageIO.read( ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()) );
-            g.drawImage(image,0,0,null);
+            Image background = ImageIO.read( ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()) );
+            g.drawImage(background,0,0,null);
 
             //draw level objects
             for(MapObject o : player.getCurrentLevel().getMapObjects()){
