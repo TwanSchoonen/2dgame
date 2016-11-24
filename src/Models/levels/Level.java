@@ -22,6 +22,7 @@ public abstract class Level {
 
     public abstract Level getNextLevel();
 
+
     public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;
         this.mapObjects = new ArrayList<>();

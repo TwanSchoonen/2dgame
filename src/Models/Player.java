@@ -65,7 +65,10 @@ public class Player {
         if (moveUp) {
             this.VERTMOVEMENT = -SPEED;
         }
-        if (moveLeft) {
+        if(!moveDown && !moveUp) {
+            this.VERTMOVEMENT = 0;
+        }
+        if(moveLeft){
             this.HORIMOVEMENT = SPEED;
         }
         if (moveRight) {
@@ -77,8 +80,10 @@ public class Player {
         if (!moveLeft && !moveRight) {
             this.HORIMOVEMENT = 0;
         }
+
         lastY = y;
         lastX = x;
+
         if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
             this.y += VERTMOVEMENT;
             this.x -= HORIMOVEMENT;

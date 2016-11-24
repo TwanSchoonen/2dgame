@@ -5,6 +5,6 @@ package Models.Objects;
  */
 public class StartHouse extends MapObject {
     public StartHouse(int x, int y){
-        super( x, y, 20,20,"\\Recources\\ShabbyChic_Home.png");
+        super( x, y, 20,20,"\\Recources\\house2.png");
     }
 }
