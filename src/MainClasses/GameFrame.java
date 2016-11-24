@@ -18,9 +18,9 @@ public class GameFrame extends JFrame{
     private Player player;
 
     //width of the game Frame
-    private static final int GAMEWIDTH = 700;
+    public static final int GAMEWIDTH = 700;
     //height of the game Frame
-    private  static final int GAMEHEIGHT = 500;
+    public  static final int GAMEHEIGHT = 500;
 
     public GameFrame() {
         super("Title test!!"); //set the title of the frame

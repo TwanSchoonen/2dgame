@@ -1,5 +1,6 @@
 package Models.levels;
 
+import MainClasses.GameFrame;
 import Models.Objects.MapObject;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by twan on 24-11-2016.
  */
+
 
 //Super class for all levels
 public abstract class Level {
@@ -35,5 +37,10 @@ public abstract class Level {
 
     public String getBackgroundPath() {
         return backgroundPath;
+    }
+
+    public void boundaries(){
+        x > 0 && x < GameFrame.GAMEWIDTH;
+        y < 0 && y > -GameFrame.GAMEHEIGHT;
     }
 }
