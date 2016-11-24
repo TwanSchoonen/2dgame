@@ -67,8 +67,6 @@ public class Player {
         if(!moveDown && !moveUp) {
             this.VERTMOVEMENT = 0;
         }
-        lastY = y;
-        this.y+=VERTMOVEMENT;
 
         if(moveLeft){
             this.HORIMOVEMENT = SPEED;
@@ -79,6 +77,9 @@ public class Player {
         if(!moveLeft && !moveRight) {
             this.HORIMOVEMENT = 0;
         }
+
+        lastY = y;
+        this.y+=VERTMOVEMENT;
         lastX = x;
         this.x-=HORIMOVEMENT;
     }
