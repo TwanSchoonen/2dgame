@@ -68,7 +68,9 @@ public class Player {
             this.VERTMOVEMENT = 0;
         }
         lastY = y;
-        this.y+=VERTMOVEMENT;
+//        if (!currentLevel.boundaryY(y)) {
+            this.y += VERTMOVEMENT;
+//        }
 
         if(moveLeft){
             this.HORIMOVEMENT = SPEED;
@@ -80,7 +82,9 @@ public class Player {
             this.HORIMOVEMENT = 0;
         }
         lastX = x;
-        this.x-=HORIMOVEMENT;
+//        if (!currentLevel.boundaryX(x)) {
+            this.x -= HORIMOVEMENT;
+//        }
     }
 
     public void setMoveDown(boolean moveDown) {

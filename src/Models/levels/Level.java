@@ -20,8 +20,17 @@ public abstract class Level {
 
     public abstract Level getNextLevel();
 
-    public void setBackgroundPath(String backgroundPath) {
+    public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;
+        this.mapObjects = new ArrayList<>();
+    }
+
+    public ArrayList<MapObject> getMapObjects(){
+        return new ArrayList<>(mapObjects);
+    }
+
+    public void addMapObject(MapObject o){
+        mapObjects.add(o);
     }
 
     public String getBackgroundPath() {

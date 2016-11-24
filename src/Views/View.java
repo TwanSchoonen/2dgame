@@ -1,5 +1,6 @@
 package Views;
 
+import Models.Objects.MapObject;
 import Models.Player;
 
 import javax.imageio.ImageIO;
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Map;
 
 /**
  * Created by twan on 22-11-2016.
@@ -36,12 +38,23 @@ public class View extends JPanel {
 
         //draw current level
         try {
+            //draw background
             Image image = ImageIO.read( ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()) );
             g.drawImage(image,0,0,null);
+
+            //draw level objects
+            for(MapObject o : player.getCurrentLevel().getMapObjects()){
+                Image mapObject = ImageIO.read( ClassLoader.getSystemResource(o.getGraphicPath()) );
+                g.drawImage(mapObject, o.getX(), o.getY(), null);
+            }
+
+
+
         } catch (Exception e){
-            System.out.println("background failed");
+            System.out.println("level loading failed");
 //            e.printStackTrace();
         }
+
 
 
         //draw player
