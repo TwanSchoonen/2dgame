@@ -24,8 +24,8 @@ public class Player {
     private boolean moveRight;
     private boolean horiMov;
 
-    private double VERTMOVEMENT = 0;
-    private double HORIMOVEMENT = 0;
+    public double VERTMOVEMENT = 0;
+    public double HORIMOVEMENT = 0;
 
     //coordinates of the player
     private double x;
