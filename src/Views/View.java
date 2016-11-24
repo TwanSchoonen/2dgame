@@ -36,7 +36,7 @@ public class View extends JPanel {
 
         //draw current level
         try {
-            Image image =  ImageIO.read(new File(player.getCurrentLevel().getBackgroundPath()));
+            Image image = ImageIO.read( ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()) );
             g.drawImage(image,0,0,null);
         } catch (Exception e){
             System.out.println("background failed");

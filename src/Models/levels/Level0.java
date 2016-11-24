@@ -11,7 +11,7 @@ import java.io.File;
 public class Level0 extends Level{
 
     public Level0(){
-        this.setBackgroundPath("C:\\git_projects\\CarSnaTwaInc\\2dgame\\src\\Recources\\grass_template2.jpg");
+        this.setBackgroundPath("\\Recources\\grass_template2.jpg");
     }
 
     public boolean CheckBoundaries() {
