@@ -1,13 +1,19 @@
 package Models;
 
+import Models.levels.Level;
+import Models.levels.Level0;
+
 /**
  * Created by twan on 22-11-2016.
  */
 public class Player {
 
+
     private final double SPEED = 3;
     public final int CHARWIDTH = 10;
     public final int CHARHEIGHT = 10;
+    private static int GAMEWIDTH;
+    private static int GAMEHEIGHT;
 
     //Boolean used for movement
     private boolean moveDown;
@@ -20,19 +26,27 @@ public class Player {
     private double VERTMOVEMENT = 0;
     private double HORIMOVEMENT = 0;
 
-
-
     //coordinates of the player
     private double x;
     private double lastX;
     private double y;
     private double lastY;
 
-    public Player() {
-        x = 20;
-        y = 0;
-        lastX = 0;
-        lastY = 0;
+    private Level currentLevel;
+
+
+    public Player(int GAMEWIDTH, int GAMEHEIGHT) {
+        this.GAMEWIDTH = GAMEWIDTH;
+        this.GAMEHEIGHT = GAMEHEIGHT;
+        initPlayer();
+    }
+
+    private void initPlayer(){
+        x = GAMEWIDTH/2;
+        y = GAMEHEIGHT/2;
+        lastX = GAMEWIDTH/2;
+        lastY = GAMEHEIGHT/2;
+        this.currentLevel = new Level0();
     }
 
     public double getX() {
@@ -126,4 +140,13 @@ public class Player {
     public double getLastY() {
         return lastY;
     }
+
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void resetPlayer() {
+       initPlayer();
+    }
+
 }

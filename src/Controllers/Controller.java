@@ -30,6 +30,9 @@ public class Controller implements KeyListener {
         if (x == KeyEvent.VK_DOWN){
             player.setMoveDown(true);
         }
+        if (x == KeyEvent.VK_R){
+            player.resetPlayer();
+        }
     }
 
     public void keyTyped(KeyEvent e) {
