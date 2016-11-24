@@ -1,5 +1,8 @@
 package Models;
 
+import Models.levels.Level;
+import Models.levels.Level0;
+
 /**
  * Created by twan on 22-11-2016.
  */
@@ -25,6 +28,8 @@ public class Player {
     private double y;
     private double lastY;
 
+    private Level currentLevel;
+
 
     public Player(int GAMEWIDTH, int GAMEHEIGHT) {
         this.GAMEWIDTH = GAMEWIDTH;
@@ -37,6 +42,7 @@ public class Player {
         y = GAMEHEIGHT/2;
         lastX = GAMEWIDTH/2;
         lastY = GAMEHEIGHT/2;
+        this.currentLevel = new Level0();
     }
 
     public double getX() {
@@ -90,7 +96,12 @@ public class Player {
         return lastY;
     }
 
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
+
     public void resetPlayer() {
        initPlayer();
     }
+
 }

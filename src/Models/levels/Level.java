@@ -14,10 +14,17 @@ public abstract class Level {
 
     private ArrayList<MapObject> mapObjects;
 
-    private Image background;
+    private String backgroundPath;
 
     public abstract boolean CheckBoundaries();
 
     public abstract Level getNextLevel();
 
+    public void setBackgroundPath(String backgroundPath) {
+        this.backgroundPath = backgroundPath;
+    }
+
+    public String getBackgroundPath() {
+        return backgroundPath;
+    }
 }

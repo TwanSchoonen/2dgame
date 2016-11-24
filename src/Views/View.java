@@ -2,8 +2,11 @@ package Views;
 
 import Models.Player;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * Created by twan on 22-11-2016.
@@ -12,8 +15,13 @@ public class View extends JPanel {
 
     private float interpolation;
     private Player player;
+    private int WIDTH;
+    private int HEIGHT;
 
     public View (int WIDTH, int HEIGHT){
+        this.WIDTH = WIDTH;
+        this.HEIGHT = HEIGHT;
+
         setSize(WIDTH,HEIGHT); //Set panel size
         setVisible(true);
         setBackground(new Color(96, 3, 69));
@@ -26,6 +34,14 @@ public class View extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        //draw current level
+        try {
+            Image image =  ImageIO.read(new File(player.getCurrentLevel().getBackgroundPath()));
+            g.drawImage(image,0,0,null);
+        } catch (Exception e){
+            System.out.println("background failed");
+//            e.printStackTrace();
+        }
 
 
         //draw player
