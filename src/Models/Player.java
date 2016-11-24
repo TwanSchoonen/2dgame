@@ -4,12 +4,14 @@ package Models;
  * Created by twan on 22-11-2016.
  */
 public class Player {
-    
+
+    //Constants of the player:
+    //Used for the speed of the movements
     private final double MOVEMENTINCREASE = 3;
     public final int CHARWIDTH = 10;
     public final int CHARHEIGHT = 10;
-    public static int GAMEWIDTH;
-    public static int GAMEHEIGHT;
+    private static int GAMEWIDTH;
+    private static int GAMEHEIGHT;
 
     //Boolean used for movement
     private boolean moveDown;

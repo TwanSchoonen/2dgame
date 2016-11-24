@@ -16,7 +16,7 @@ public class View extends JPanel {
     public View (int WIDTH, int HEIGHT){
         setSize(WIDTH,HEIGHT); //Set panel size
         setVisible(true);
-        setBackground(new Color(9, 96, 18));
+        setBackground(new Color(96, 3, 69));
     }
 
     public void linkPlayer(Player player) {
