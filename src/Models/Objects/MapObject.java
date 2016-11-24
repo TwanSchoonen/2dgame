@@ -8,10 +8,29 @@ import java.awt.*;
 
 //Super class for all map objects
 public abstract class MapObject {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int HEIGHT;
     private int WIDTH;
-    private Image graphic;
+    private String graphicPath;
 
+    public MapObject(int x, int y, int HEIGHT, int WIDTH, String graphicPath) {
+        this.x = x;
+        this.y = y;
+        this.HEIGHT = HEIGHT;
+        this.WIDTH = WIDTH;
+        this.graphicPath = graphicPath;
+    }
+
+    public String getGraphicPath() {
+        return graphicPath;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

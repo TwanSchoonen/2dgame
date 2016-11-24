@@ -1,5 +1,8 @@
 package Models.levels;
 
+import Models.Objects.MapObject;
+import Models.Objects.StartHouse;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,7 +14,9 @@ import java.io.File;
 public class Level0 extends Level{
 
     public Level0(){
-        this.setBackgroundPath("\\Recources\\grass_template2.jpg");
+        super("\\Recources\\grass_template2.jpg");
+        MapObject o = new StartHouse(100,100);
+        this.addMapObject(o);
     }
 
     public boolean CheckBoundaries() {
