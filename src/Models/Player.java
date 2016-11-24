@@ -1,5 +1,6 @@
 package Models;
 
+import MainClasses.GameFrame;
 import Models.levels.Level;
 import Models.levels.Level0;
 
@@ -57,30 +58,28 @@ public class Player {
         return y;
     }
 
-    public void updateMovement(){
-        if(moveDown) {
+    public void updateMovement() {
+        if (moveDown) {
             this.VERTMOVEMENT = SPEED;
         }
-        if(moveUp){
+        if (moveUp) {
             this.VERTMOVEMENT = -SPEED;
         }
-        if(!moveDown && !moveUp) {
-            this.VERTMOVEMENT = 0;
-        }
-        lastY = y;
-
-        if(moveLeft){
+        if (moveLeft) {
             this.HORIMOVEMENT = SPEED;
         }
-        if(moveRight){
+        if (moveRight) {
             this.HORIMOVEMENT = -SPEED;
         }
-        if(!moveLeft && !moveRight) {
+        if (!moveDown && !moveUp) {
+            this.VERTMOVEMENT = 0;
+        }
+        if (!moveLeft && !moveRight) {
             this.HORIMOVEMENT = 0;
         }
+        lastY = y;
         lastX = x;
-
-        if (currentLevel.boundaries(x+HORIMOVEMENT, y+VERTMOVEMENT)) {
+        if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
             this.y += VERTMOVEMENT;
             this.x -= HORIMOVEMENT;
         }
