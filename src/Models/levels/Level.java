@@ -39,8 +39,7 @@ public abstract class Level {
         return backgroundPath;
     }
 
-    public void boundaries(){
-        x > 0 && x < GameFrame.GAMEWIDTH;
-        y < 0 && y > -GameFrame.GAMEHEIGHT;
+    public boolean boundaries(double x, double y){
+        return ((x > 0) && (x < GameFrame.GAMEWIDTH) && (y > 0) && (y < GameFrame.GAMEHEIGHT));
     }
 }
