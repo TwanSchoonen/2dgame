@@ -2,8 +2,10 @@ package Models.levels;
 
 import MainClasses.GameFrame;
 import Models.Objects.MapObject;
+import Models.Player;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -33,11 +35,12 @@ public abstract class Level{
         this.newLevel = true;
     }
 
-    public ArrayList<MapObject> getMapObjects(){
+
+    public ArrayList<MapObject> getMapObjects() {
         return new ArrayList<>(mapObjects);
     }
 
-    public void addMapObject(MapObject o){
+    public void addMapObject(MapObject o) {
         mapObjects.add(o);
     }
 
@@ -45,8 +48,21 @@ public abstract class Level{
         return backgroundPath;
     }
 
-    public boolean boundaries(double x, double y){
-        return ((x > 0) && (x < GameFrame.GAMEWIDTH) && (y > 0) && (y < GameFrame.GAMEHEIGHT));
+    public boolean boundaries(Rectangle playerRect) {
+        boolean b = true;
+        for (MapObject m : mapObjects) {
+            if (m.getRectangle().intersects(playerRect)) {
+                b = false;
+            }
+        }
+        Rectangle levelRectangle = new Rectangle(0, 0, GameFrame.GAMEWIDTH, GameFrame.GAMEHEIGHT);
+        if (levelRectangle.contains(playerRect)) {
+            b = true;
+        }
+        else {
+                b = false;
+            }
+        return b;
     }
 
     public boolean isNewLevel() {

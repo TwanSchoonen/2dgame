@@ -3,6 +3,8 @@ package Models;
 import Models.levels.Level;
 import Models.levels.Level0;
 
+import java.awt.*;
+
 /**
  * Created by twan on 22-11-2016.
  */
@@ -90,14 +92,15 @@ public class Player {
 
         lastY = y;
         lastX = x;
-
-        if (currentLevel.boundaries(x-horiMovement-CHARWIDTH/2, y+vertMovement+CHARHEIGHT/2)) {
+        
+        if (currentLevel.boundaries(getRectangle())) {
             this.y += vertMovement;
             this.x -= horiMovement;
         } else {
             currentLevel = currentLevel.getNextLevel();
             x = GAMEWIDTH / 2;
             y = GAMEHEIGHT / 2;
+
         }
     }
 
@@ -176,4 +179,7 @@ public class Player {
        initPlayer();
     }
 
+    public Rectangle getRectangle() {
+        return new Rectangle((int) (x-horiMovement), (int) (y+vertMovement), CHARWIDTH, CHARHEIGHT);
+    }
 }

@@ -33,4 +33,8 @@ public abstract class MapObject {
     public int getY() {
         return y;
     }
+
+    public Rectangle getRectangle(){
+        return new Rectangle(x,y,WIDTH,HEIGHT);
+    }
 }
