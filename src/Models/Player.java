@@ -1,5 +1,6 @@
 package Models;
 
+import MainClasses.GameFrame;
 import Models.levels.Level;
 import Models.levels.Level0;
 
@@ -23,8 +24,8 @@ public class Player {
     private boolean moveRight;
     private boolean horiMov;
 
-    private double VERTMOVEMENT = 0;
-    private double HORIMOVEMENT = 0;
+    public double VERTMOVEMENT = 0;
+    public double HORIMOVEMENT = 0;
 
     //coordinates of the player
     private double x;
@@ -64,40 +65,38 @@ public class Player {
         return y;
     }
 
-    public void updateMovement(){
-        if(moveDown) {
+    public void updateMovement() {
+        if (moveDown) {
             this.VERTMOVEMENT = SPEED;
         }
-        if(moveUp){
+        if (moveUp) {
             this.VERTMOVEMENT = -SPEED;
         }
         if(!moveDown && !moveUp) {
             this.VERTMOVEMENT = 0;
         }
-
-        lastY = y;
-//        if (!currentLevel.boundaryY(y)) {
-            this.y += VERTMOVEMENT;
-//        }
-
-
         if(moveLeft){
             this.HORIMOVEMENT = SPEED;
         }
-        if(moveRight){
+        if (moveRight) {
             this.HORIMOVEMENT = -SPEED;
         }
-        if(!moveLeft && !moveRight) {
+        if (!moveDown && !moveUp) {
+            this.VERTMOVEMENT = 0;
+        }
+        if (!moveLeft && !moveRight) {
             this.HORIMOVEMENT = 0;
         }
 
         lastY = y;
-        this.y+=VERTMOVEMENT;
         lastX = x;
-//        if (!currentLevel.boundaryX(x)) {
+
+        if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
+            this.y += VERTMOVEMENT;
             this.x -= HORIMOVEMENT;
-//        }
+        }
     }
+
 
     public void setMoveDown(boolean moveDown) {
         this.moveDown = moveDown;
@@ -109,7 +108,6 @@ public class Player {
             this.vertMov = true;
             moveUp = false;
         }
-
     }
 
     public void setMoveUp(boolean moveUp) {

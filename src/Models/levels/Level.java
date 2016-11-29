@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by twan on 24-11-2016.
  */
 
+
 //Super class for all levels
 public abstract class Level {
 
@@ -37,5 +38,9 @@ public abstract class Level {
 
     public String getBackgroundPath() {
         return backgroundPath;
+    }
+
+    public boolean boundaries(double x, double y){
+        return ((x > 0) && (x < GameFrame.GAMEWIDTH) && (y > 0) && (y < GameFrame.GAMEHEIGHT));
     }
 }
