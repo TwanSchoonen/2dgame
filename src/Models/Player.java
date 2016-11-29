@@ -4,6 +4,8 @@ import MainClasses.GameFrame;
 import Models.levels.Level;
 import Models.levels.Level0;
 
+import java.awt.*;
+
 /**
  * Created by twan on 22-11-2016.
  */
@@ -91,7 +93,7 @@ public class Player {
         lastY = y;
         lastX = x;
 
-        if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
+        if (currentLevel.boundaries(getRectangle())) {
             this.y += VERTMOVEMENT;
             this.x -= HORIMOVEMENT;
         }
@@ -163,4 +165,8 @@ public class Player {
        initPlayer();
     }
 
+    public Rectangle getRectangle() {
+        return new Rectangle((int) (x-HORIMOVEMENT), (int) (y+VERTMOVEMENT), CHARWIDTH, CHARHEIGHT);
+    }
 }
+
