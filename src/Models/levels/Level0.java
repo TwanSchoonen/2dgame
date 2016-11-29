@@ -19,11 +19,7 @@ public class Level0 extends Level{
         this.addMapObject(o);
     }
 
-    public boolean CheckBoundaries() {
-        return false;
-    }
-
     public Level getNextLevel() {
-        return null;
+        return new Level1();
     }
 }

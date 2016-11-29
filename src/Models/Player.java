@@ -65,6 +65,7 @@ public class Player {
         return y;
     }
 
+    //called every frame to update the player movement
     public void updateMovement() {
         if (moveDown) {
             this.VERTMOVEMENT = SPEED;
@@ -94,8 +95,13 @@ public class Player {
         if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
             this.y += VERTMOVEMENT;
             this.x -= HORIMOVEMENT;
+        } else {
+            currentLevel = currentLevel.getNextLevel();
+            x = GAMEWIDTH/2;
+            y = GAMEHEIGHT/2;
         }
     }
+
 
 
     public void setMoveDown(boolean moveDown) {
