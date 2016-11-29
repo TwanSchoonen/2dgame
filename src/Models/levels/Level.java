@@ -7,6 +7,7 @@ import Models.Player;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Created by twan on 24-11-2016.
@@ -14,20 +15,24 @@ import java.util.ArrayList;
 
 
 //Super class for all levels
-public abstract class Level {
+public abstract class Level{
 
     private ArrayList<MapObject> mapObjects;
 
     private String backgroundPath;
 
-    public abstract boolean CheckBoundaries();
+    private boolean newLevel = false;
 
     public abstract Level getNextLevel();
 
+    public Level(){
+        this("\\Recources\\grass_template2.jpg");
+    }
 
     public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;
         this.mapObjects = new ArrayList<>();
+        this.newLevel = true;
     }
 
 
@@ -58,5 +63,13 @@ public abstract class Level {
                 b = false;
             }
         return b;
+    }
+
+    public boolean isNewLevel() {
+        return newLevel;
+    }
+
+    public void setNewLevel(boolean newLevel) {
+        this.newLevel = newLevel;
     }
 }

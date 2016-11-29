@@ -12,12 +12,14 @@ import java.io.IOException;
 /**
  * Created by twan on 22-11-2016.
  */
-public class View extends JPanel {
+public class View extends JPanel{
 
     private float interpolation;
     private Player player;
     private int WIDTH;
     private int HEIGHT;
+    private Image background;
+
     BufferedImage spriteSheet = null;
     SpriteSheet ss;
     BufferedImage playerSprite;
@@ -25,6 +27,7 @@ public class View extends JPanel {
     private double hor;
     int playerSpriteX = 0;
     int playerSpriteY = 0;
+
 
     public View (int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
@@ -34,6 +37,7 @@ public class View extends JPanel {
         setVisible(true);
         setBackground(new Color(96, 3, 69));
 
+        this.background = null;
 
         try {
             spriteSheet = ImageIO.read(ClassLoader.getSystemResource("\\Recources\\Character\\CharSheet.png") );
@@ -41,8 +45,6 @@ public class View extends JPanel {
             e.printStackTrace();
         }
         ss = new SpriteSheet(spriteSheet);
-
-
 
     }
 
@@ -53,19 +55,28 @@ public class View extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        //draw background
+        if(player.getCurrentLevel().isNewLevel()) {
+            try {
+                background = ImageIO.read(ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()));
+                player.getCurrentLevel().setNewLevel(false);
+            } catch (IOException e) {
+                System.out.println("backgroundloadingfailed");
+                e.printStackTrace();
+            }
+        }
+        if(background!=null) {
+            g.drawImage(background, 0, 0, null);
+        }
         //draw current level
         try {
-            //draw background
-            Image background = ImageIO.read( ClassLoader.getSystemResource(player.getCurrentLevel().getBackgroundPath()) );
-            g.drawImage(background,0,0,null);
-
             //draw level objects
-            for(MapObject o : player.getCurrentLevel().getMapObjects()){
-                Image mapObject = ImageIO.read( ClassLoader.getSystemResource(o.getGraphicPath()) );
-                g.drawImage(mapObject, o.getX(), o.getY(), null);
-            }
-
-            //draw player
+//            for(MapObject o : player.getCurrentLevel().getMapObjects()){
+//                Image mapObject = ImageIO.read( ClassLoader.getSystemResource(o.getGraphicPath()) );
+//                g.drawImage(mapObject, o.getX(), o.getY(), null);
+//            }
+//
+//            //draw player
             int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
             int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
 
@@ -85,8 +96,6 @@ public class View extends JPanel {
             if(hor>0){
                 playerSpriteY = 966;
             }
-
-
 
             playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
             g.drawImage(playerSprite,drawX,drawY,null);
@@ -109,4 +118,5 @@ public class View extends JPanel {
     {
         interpolation = interp;
     }
+
 }
