@@ -32,6 +32,10 @@ public class Player {
     private double y;
     private double lastY;
 
+    //rpg elements of the player
+    private int hp;
+    private int maxHP;
+
     private Level currentLevel;
 
 
@@ -46,6 +50,9 @@ public class Player {
         y = GAMEHEIGHT/2;
         lastX = GAMEWIDTH/2;
         lastY = GAMEHEIGHT/2;
+
+        this.maxHP = 30;
+        this.hp = 30;
         this.currentLevel = new Level0();
     }
 
