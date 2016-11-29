@@ -90,7 +90,7 @@ public class Player {
 
         lastY = y;
         lastX = x;
-        
+
         if (currentLevel.boundaries(x-horiMovement-CHARWIDTH/2, y+vertMovement+CHARHEIGHT/2)) {
             this.y += vertMovement;
             this.x -= horiMovement;

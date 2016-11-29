@@ -66,52 +66,45 @@ public class View extends JPanel{
             }
         }
         if(background!=null) {
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0,WIDTH+32, HEIGHT+32, null);
         }
+        //draw player
+        drawPlayer(g);
+
+
         //draw current level
-        try {
+
             //draw level objects
 //            for(MapObject o : player.getCurrentLevel().getMapObjects()){
 //                Image mapObject = ImageIO.read( ClassLoader.getSystemResource(o.getGraphicPath()) );
 //                g.drawImage(mapObject, o.getX(), o.getY(), null);
 //            }
-//
-//            //draw player
-            int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
-            int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
-
-            //player movement
-            ver = player.getVertMovement();
-            hor = player.getHoriMovement();
-
-            if(ver<0){
-                playerSpriteY = 138;
-            }
-            if(ver>0){
-                playerSpriteY = 552;
-            }
-            if(hor<0){
-                playerSpriteY = 0;
-            }
-            if(hor>0){
-                playerSpriteY = 966;
-            }
-
-            playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
-            g.drawImage(playerSprite,drawX,drawY,null);
 
 
 
+    }
 
+    private void drawPlayer(Graphics g){
 
-        } catch (Exception e){
-            System.out.println("level loading failed");
-//            e.printStackTrace();
+        int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
+        int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
+        //player movement
+        ver = player.getVertMovement();
+        hor = player.getHoriMovement();
+        if(ver<0){
+            playerSpriteY = 138;
         }
-
-
-
-
+        if(ver>0){
+            playerSpriteY = 552;
+        }
+        if(hor<0){
+            playerSpriteY = 0;
+        }
+        if(hor>0){
+            playerSpriteY = 966;
+        }
+        playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
+        g.drawImage(playerSprite,drawX,drawY,null);
     }
 
     public void setInterpolation(float interp)
