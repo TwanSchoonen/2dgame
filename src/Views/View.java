@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * Created by twan on 22-11-2016.
@@ -17,6 +18,13 @@ public class View extends JPanel {
     private Player player;
     private int WIDTH;
     private int HEIGHT;
+    BufferedImage spriteSheet = null;
+    SpriteSheet ss;
+    BufferedImage playerSprite;
+    private double ver;
+    private double hor;
+    int playerSpriteX = 0;
+    int playerSpriteY = 0;
 
     public View (int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
@@ -25,6 +33,17 @@ public class View extends JPanel {
         setSize(WIDTH,HEIGHT); //Set panel size
         setVisible(true);
         setBackground(new Color(96, 3, 69));
+
+
+        try {
+            spriteSheet = ImageIO.read(ClassLoader.getSystemResource("\\Recources\\Character\\CharSheet.png") );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ss = new SpriteSheet(spriteSheet);
+
+
+
     }
 
     public void linkPlayer(Player player) {
@@ -50,14 +69,27 @@ public class View extends JPanel {
             int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
             int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
 
-            BufferedImageLoader loader = new BufferedImageLoader();
-            BufferedImage spriteSheet = null;
-            spriteSheet = ImageIO.read(ClassLoader.getSystemResource("\\Recources\\Character\\CharSheet.png") );
-            SpriteSheet ss = new SpriteSheet(spriteSheet);
+            //player movement
+            ver = player.getVertMovement();
+            hor = player.getHoriMovement();
 
-            
-            BufferedImage sprite = ss.grabSprite(0,0,132,132);
-            g.drawImage(sprite,drawX,drawY,null);
+            if(ver<0){
+                playerSpriteY = 138;
+            }
+            if(ver>0){
+                playerSpriteY = 552;
+            }
+            if(hor<0){
+                playerSpriteY = 0;
+            }
+            if(hor>0){
+                playerSpriteY = 966;
+            }
+
+
+
+            playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
+            g.drawImage(playerSprite,drawX,drawY,null);
 
 
 

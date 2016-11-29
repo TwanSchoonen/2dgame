@@ -1,6 +1,5 @@
 package Models;
 
-import MainClasses.GameFrame;
 import Models.levels.Level;
 import Models.levels.Level0;
 
@@ -24,8 +23,8 @@ public class Player {
     private boolean moveRight;
     private boolean horiMov;
 
-    public double VERTMOVEMENT = 0;
-    public double HORIMOVEMENT = 0;
+    private double vertMovement = 0;
+    private double horiMovement = 0;
 
     //coordinates of the player
     private double x;
@@ -67,33 +66,33 @@ public class Player {
 
     public void updateMovement() {
         if (moveDown) {
-            this.VERTMOVEMENT = SPEED;
+            this.vertMovement = SPEED;
         }
         if (moveUp) {
-            this.VERTMOVEMENT = -SPEED;
+            this.vertMovement = -SPEED;
         }
         if(!moveDown && !moveUp) {
-            this.VERTMOVEMENT = 0;
+            this.vertMovement = 0;
         }
         if(moveLeft){
-            this.HORIMOVEMENT = SPEED;
+            this.horiMovement = SPEED;
         }
         if (moveRight) {
-            this.HORIMOVEMENT = -SPEED;
+            this.horiMovement = -SPEED;
         }
         if (!moveDown && !moveUp) {
-            this.VERTMOVEMENT = 0;
+            this.vertMovement = 0;
         }
         if (!moveLeft && !moveRight) {
-            this.HORIMOVEMENT = 0;
+            this.horiMovement = 0;
         }
 
         lastY = y;
         lastX = x;
 
-        if (currentLevel.boundaries(x-HORIMOVEMENT-CHARWIDTH/2, y+VERTMOVEMENT+CHARHEIGHT/2)) {
-            this.y += VERTMOVEMENT;
-            this.x -= HORIMOVEMENT;
+        if (currentLevel.boundaries(x-horiMovement-CHARWIDTH/2, y+vertMovement+CHARHEIGHT/2)) {
+            this.y += vertMovement;
+            this.x -= horiMovement;
         }
     }
 
@@ -145,6 +144,14 @@ public class Player {
             this.horiMov = true;
             moveLeft = false;
         }
+    }
+
+    public double getVertMovement() {
+        return vertMovement;
+    }
+
+    public double getHoriMovement() {
+        return horiMovement;
     }
 
     public double getLastX() {
