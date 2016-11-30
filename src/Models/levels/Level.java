@@ -25,10 +25,6 @@ public abstract class Level{
 
     public abstract Level getNextLevel();
 
-    public Level(){
-        this("\\Recources\\grass_template2.jpg");
-    }
-
     public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;
         this.mapObjects = new ArrayList<>();
@@ -56,12 +52,10 @@ public abstract class Level{
             }
         }
         Rectangle levelRectangle = new Rectangle(0, 0, GameFrame.GAMEWIDTH, GameFrame.GAMEHEIGHT);
-        if (levelRectangle.contains(playerRect)) {
-            b = true;
+        if (!levelRectangle.contains(playerRect)) {
+            b = false;
         }
-        else {
-                b = false;
-            }
+
         return b;
     }
 

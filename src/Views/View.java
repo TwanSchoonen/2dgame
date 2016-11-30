@@ -1,5 +1,6 @@
 package Views;
 
+import MainClasses.GameFrame;
 import Models.Objects.MapObject;
 import Models.Player;
 
@@ -16,8 +17,6 @@ public class View extends JPanel{
 
     private float interpolation;
     private Player player;
-    private int WIDTH;
-    private int HEIGHT;
     private Image background;
 
     BufferedImage spriteSheet = null;
@@ -29,11 +28,9 @@ public class View extends JPanel{
     int playerSpriteY = 0;
 
 
-    public View (int WIDTH, int HEIGHT){
-        this.WIDTH = WIDTH;
-        this.HEIGHT = HEIGHT;
+    public View (){
 
-        setSize(WIDTH,HEIGHT); //Set panel size
+        setSize(GameFrame.GAMEWIDTH,GameFrame.GAMEHEIGHT); //Set panel size
         setVisible(true);
         setBackground(new Color(96, 3, 69));
 
@@ -66,19 +63,16 @@ public class View extends JPanel{
             }
         }
         if(background!=null) {
-            g.drawImage(background, 0, 0,WIDTH+32, HEIGHT+32, null);
+            g.drawImage(background, 0, 0, GameFrame.GAMEWIDTH, GameFrame.GAMEHEIGHT, null);
         }
         //draw player
         drawPlayer(g);
 
-
         //draw current level
-
             //draw level objects
-//            for(MapObject o : player.getCurrentLevel().getMapObjects()){
-//                Image mapObject = ImageIO.read( ClassLoader.getSystemResource(o.getGraphicPath()) );
-//                g.drawImage(mapObject, o.getX(), o.getY(), null);
-//            }
+            for(MapObject o : player.getCurrentLevel().getMapObjects()){
+                g.drawImage(o.getImage(), o.getX(), o.getY(),o.getHEIGHT(), o.getWIDTH(), null);
+            }
 
 
 
@@ -86,8 +80,8 @@ public class View extends JPanel{
 
     private void drawPlayer(Graphics g){
 
-        int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.CHARWIDTH/2);
-        int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.CHARHEIGHT/2);
+        int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.getCHARWIDTH()/2);
+        int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.getCHARHEIGHT()/2);
         //player movement
         ver = player.getVertMovement();
         hor = player.getHoriMovement();
@@ -104,7 +98,7 @@ public class View extends JPanel{
             playerSpriteY = 966;
         }
         playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
-        g.drawImage(playerSprite,drawX,drawY,null);
+        g.drawImage(playerSprite,drawX,drawY,player.getCHARWIDTH(),player.getCHARHEIGHT(),null);
     }
 
     public void setInterpolation(float interp)

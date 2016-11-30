@@ -1,5 +1,6 @@
 package Models;
 
+import MainClasses.GameFrame;
 import Models.levels.Level;
 import Models.levels.Level0;
 
@@ -12,10 +13,8 @@ public class Player {
 
 
     private final double SPEED = 3;
-    public final int CHARWIDTH = 10;
-    public final int CHARHEIGHT = 10;
-    private static int GAMEWIDTH;
-    private static int GAMEHEIGHT;
+    private final int CHARWIDTH = 50;
+    private final int CHARHEIGHT = 50;
 
     //Boolean used for movement
     private boolean moveDown;
@@ -41,17 +40,15 @@ public class Player {
     private Level currentLevel;
 
 
-    public Player(int GAMEWIDTH, int GAMEHEIGHT) {
-        this.GAMEWIDTH = GAMEWIDTH;
-        this.GAMEHEIGHT = GAMEHEIGHT;
+    public Player() {
         initPlayer();
     }
 
     private void initPlayer(){
-        x = GAMEWIDTH/2;
-        y = GAMEHEIGHT/2;
-        lastX = GAMEWIDTH/2;
-        lastY = GAMEHEIGHT/2;
+        x = GameFrame.GAMEWIDTH/2;
+        y = GameFrame.GAMEHEIGHT/2;
+        lastX = GameFrame.GAMEWIDTH/2;
+        lastY = GameFrame.GAMEHEIGHT/2;
 
         this.maxHP = 30;
         this.hp = 30;
@@ -92,14 +89,14 @@ public class Player {
 
         lastY = y;
         lastX = x;
-        
+
         if (currentLevel.boundaries(getRectangle())) {
             this.y += vertMovement;
             this.x -= horiMovement;
         } else {
             currentLevel = currentLevel.getNextLevel();
-            x = GAMEWIDTH / 2;
-            y = GAMEHEIGHT / 2;
+            x = GameFrame.GAMEWIDTH / 2;
+            y = GameFrame.GAMEHEIGHT / 2;
 
         }
     }
@@ -181,5 +178,13 @@ public class Player {
 
     public Rectangle getRectangle() {
         return new Rectangle((int) (x-horiMovement), (int) (y+vertMovement), CHARWIDTH, CHARHEIGHT);
+    }
+
+    public int getCHARWIDTH() {
+        return CHARWIDTH;
+    }
+
+    public int getCHARHEIGHT() {
+        return CHARHEIGHT;
     }
 }

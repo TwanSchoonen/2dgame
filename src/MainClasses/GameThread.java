@@ -89,6 +89,7 @@ public class GameThread implements Runnable{
                 if (thisSecond > lastSecondTime)
                 {
                     System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
+                    System.out.println("x = " + player.getX() + ", y = " + player.getY());
                     fps = frameCount;
                     frameCount = 0;
                     lastSecondTime = thisSecond;
