@@ -9,7 +9,10 @@ public class Level1 extends Level{
         super("\\Recources\\Ocean.png");
     }
 
-    public Level getNextLevel() {
-        return new Level0();
+    public Level getNextLevel(int direction) {
+        if (direction == 1){
+            return new Level0();
+        }
+        return null;
     }
 }

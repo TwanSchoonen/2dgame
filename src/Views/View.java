@@ -30,9 +30,12 @@ public class View extends JPanel{
 
     public View (){
 
-        setSize(GameFrame.GAMEWIDTH,GameFrame.GAMEHEIGHT); //Set panel size
+        this.setSize(GameFrame.GAMEHEIGHT,GameFrame.GAMEWIDTH);
+
         setVisible(true);
+
         setBackground(new Color(96, 3, 69));
+
 
         this.background = null;
 
@@ -71,7 +74,12 @@ public class View extends JPanel{
         //draw current level
             //draw level objects
             for(MapObject o : player.getCurrentLevel().getMapObjects()){
-                g.drawImage(o.getImage(), o.getX(), o.getY(),o.getHEIGHT(), o.getWIDTH(), null);
+                //draws the image
+                int drawX = o.getX() - o.getWIDTH()/2;
+                int drawY = o.getY() - o.getHEIGHT()/2;
+                g.drawImage(o.getImage(), drawX, drawY,o.getHEIGHT(), o.getWIDTH(), null);
+                //draw boundary rectangles
+                g.drawRect(drawX,drawY,o.getWIDTH(),o.getHEIGHT());
             }
 
 
@@ -82,6 +90,10 @@ public class View extends JPanel{
 
         int drawX = (int) ((player.getX() - player.getLastX()) * interpolation + player.getLastX() - player.getCHARWIDTH()/2);
         int drawY = (int) ((player.getY() - player.getLastY()) * interpolation + player.getLastY() - player.getCHARHEIGHT()/2);
+
+        //draw the player rectangle
+        g.drawRect(drawX,drawY,player.getCHARWIDTH(),player.getCHARHEIGHT());
+
         //player movement
         ver = player.getVertMovement();
         hor = player.getHoriMovement();

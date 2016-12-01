@@ -28,8 +28,10 @@ public class Player {
     private double horiMovement = 0;
 
     //coordinates of the player
+    //x indicates the middle x of the player
     private double x;
     private double lastX;
+    //y indicates the middle y of the player
     private double y;
     private double lastY;
 
@@ -37,6 +39,7 @@ public class Player {
     private int hp;
     private int maxHP;
 
+    //The level that the player plays in
     private Level currentLevel;
 
 
@@ -90,14 +93,39 @@ public class Player {
         lastY = y;
         lastX = x;
 
-        if (currentLevel.boundaries(getRectangle())) {
+        if (!currentLevel.objectBoundaries(getRectangle())) {
+            Level temp = currentLevel.getObjectLevel();
+            if(temp!=null){
+                currentLevel = temp;
+            }
+        } else if (!currentLevel.mapBoundaries(getRectangle())){
+            int direction = 0; //1 = north, 2 = east, 3 = south, 4 = west
+            double newX = x;
+            double newY = y;
+            if(y+vertMovement<=getCHARHEIGHT()/2){
+                direction = 1;
+                newY=GameFrame.GAMEHEIGHT-getCHARHEIGHT()/2-2;
+            } else if(x - horiMovement + getCHARWIDTH()/2>=GameFrame.GAMEWIDTH){
+                direction = 2;
+                newX=getCHARWIDTH()/2+2;
+            } else if (y + vertMovement + getCHARHEIGHT()/2 >=GameFrame.GAMEHEIGHT){
+                direction = 3;
+                newY=getCHARHEIGHT()/2+2;
+            } else if (x - horiMovement<=getCHARWIDTH()/2){
+                direction = 4;
+                newX = GameFrame.GAMEWIDTH-getCHARWIDTH()/2 - 2;
+            }
+            Level temp = currentLevel.getNextLevel(direction);
+            if(temp!=null){
+                currentLevel = temp;
+                this.horiMovement = 0;
+                this.vertMovement = 0;
+                this.x = newX;
+                this.y = newY;
+            }
+        } else {
             this.y += vertMovement;
             this.x -= horiMovement;
-        } else {
-            currentLevel = currentLevel.getNextLevel();
-            x = GameFrame.GAMEWIDTH / 2;
-            y = GameFrame.GAMEHEIGHT / 2;
-
         }
     }
 
@@ -177,7 +205,7 @@ public class Player {
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle((int) (x-horiMovement), (int) (y+vertMovement), CHARWIDTH, CHARHEIGHT);
+        return new Rectangle((int) (x-horiMovement-CHARWIDTH/2), (int) (y+vertMovement-CHARHEIGHT/2), CHARWIDTH, CHARHEIGHT);
     }
 
     public int getCHARWIDTH() {

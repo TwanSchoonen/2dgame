@@ -21,9 +21,11 @@ public abstract class Level{
 
     private String backgroundPath;
 
+    private Level objectLevel;
+
     private boolean newLevel = false;
 
-    public abstract Level getNextLevel();
+    public abstract Level getNextLevel(int direction);
 
     public Level(String backgroundPath) {
         this.backgroundPath = backgroundPath;
@@ -44,13 +46,19 @@ public abstract class Level{
         return backgroundPath;
     }
 
-    public boolean boundaries(Rectangle playerRect) {
+    public boolean objectBoundaries(Rectangle playerRect) {
         boolean b = true;
-        for (MapObject m : mapObjects) {
-            if (m.getRectangle().intersects(playerRect)) {
+        for (MapObject o : mapObjects) {
+            if (o.getRectangle().intersects(playerRect)) {
+                objectLevel = o.getObjectLevel();
                 b = false;
             }
         }
+        return b;
+    }
+
+    public boolean mapBoundaries(Rectangle playerRect){
+        boolean b = true;
         Rectangle levelRectangle = new Rectangle(0, 0, GameFrame.GAMEWIDTH, GameFrame.GAMEHEIGHT);
         if (!levelRectangle.contains(playerRect)) {
             b = false;
@@ -65,5 +73,9 @@ public abstract class Level{
 
     public void setNewLevel(boolean newLevel) {
         this.newLevel = newLevel;
+    }
+
+    public Level getObjectLevel() {
+        return objectLevel;
     }
 }
