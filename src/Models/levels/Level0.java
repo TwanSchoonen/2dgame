@@ -19,7 +19,10 @@ public class Level0 extends Level{
         this.addMapObject(o);
     }
 
-    public Level getNextLevel() {
-        return new Level1();
+    public Level getNextLevel(int direction) {
+        if(direction==3){
+            return new Level1();
+        }
+        return null;
     }
 }
