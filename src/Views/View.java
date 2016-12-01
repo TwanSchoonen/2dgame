@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 public class View extends JPanel{
 
+    private final int FRAMEMOVEMENT = 5;
     private float interpolation;
     private Player player;
     private Image background;
@@ -26,6 +27,7 @@ public class View extends JPanel{
     private double hor;
     int playerSpriteX = 0;
     int playerSpriteY = 0;
+    int cnt = 0;
 
 
     public View (){
@@ -97,8 +99,18 @@ public class View extends JPanel{
         if(hor>0){
             playerSpriteY = 966;
         }
+        if(hor != 0 || ver != 0){
+            cnt++;
+            if(cnt == FRAMEMOVEMENT){
+                cnt = 0;
+                playerSpriteX += 138;
+                playerSpriteX %= 1104;
+            }
+        }
         playerSprite = ss.grabSprite(playerSpriteX,playerSpriteY,132,132);
         g.drawImage(playerSprite,drawX,drawY,player.getCHARWIDTH(),player.getCHARHEIGHT(),null);
+
+
     }
 
     public void setInterpolation(float interp)
